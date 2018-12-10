@@ -5,12 +5,30 @@ Mockup for websocket server and w3c websocket
 ```
 npm i --save-dev websocket-mockup
 ```
+## API
 
+### WebSocketServerMockup
+
+- constructor(params)
+
+Create a new websocket server mockup. You can pass a `param.host` to be able to create different servers.
+
+- Promise<WebsocketMockup> connect(url,protocols)
+
+Will create a new websocket mockup in open state connected to this server
+
+- Event: request
+
+Event when a new websocket request is done, same API as the websocket server.
+
+### Websocket
+
+This is a shim of the W3C WebSocket intrface. It will connect to the WebSocketServerMockup which `host` matches the url host portion or to the default (`*`) one.
+	
 ## Example
 
 ```
-const WebSocketServer = require ("websocket-mockup").WebSocketServerMockup;
-const WebSocket       = require ("websocket-mockup").WebSocketMockup;
+const {WebSocketServer,WebSocket} = require ("websocket-mockup");
 
 const server = new WebSocketServer ({
 	host: "example.com"
