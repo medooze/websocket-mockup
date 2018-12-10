@@ -1,0 +1,24 @@
+{
+  "name": "websocket-mockup",
+  "version": "1.0.0",
+  "description": "Websocket server mockup",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap tests/*.js --cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medooze/websocket-mockup.git"
+  },
+  "author": "Sergio Garcia Murillo @ Medooze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/medooze/websocket-mockup/issues"
+  },
+  "homepage": "https://github.com/medooze/websocket-mockup#readme",
+  "dependencies": {
+    "node-mocks-http": "^1.7.3",
+    "tap": "^12.1.0",
+    "yaeti": "^1.0.2"
+  }
+}

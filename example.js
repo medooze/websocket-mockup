@@ -1,16 +1,5 @@
-# websocket-mockup
-Mockup for websocket server and w3c websocket
-
-## Install
-```
-npm i --save-dev websocket-mockup
-```
-
-## Example
-
-```
-const WebSocketServer = require ("websocket-mockup").WebSocketServerMockup;
-const WebSocket       = require ("websocket-mockup").WebSocketMockup;
+const WebSocketServer = require ("../lib/WebSocketServerMockup");
+const WebSocket = require ("../lib/WebSocketMockup");
 
 const server = new WebSocketServer ({
 	host: "example.com"
@@ -51,4 +40,3 @@ ws.onmessage	= (event) => {
 	console.log("message: "+event.data);
 	ws.close();
 };
-```
