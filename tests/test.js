@@ -63,16 +63,19 @@ tap.test("Server",async function(suite){
 			});
 		});
 
-		//Websocket
-		const ws = server.connect("/test");
-
-		//Events
-		ws.onopen	= (event) => {
-			ws.close(1,"closed");
-		};
-		ws.onclosed	= (event) => test.fail();
-		ws.onerror	= (event) => test.fail();
-		ws.onmessage	= (event) => test.fail();
+		//Do async
+		(async()=>{
+			try {
+				//Websocket
+				const ws = await server.connect("/test");
+				//Close
+				ws.close(1,"closed");
+				ws.onerror	= (event) => test.fail();
+				ws.onmessage	= (event) => test.fail();
+			} catch (e) {
+				test.fail();
+			}
+		})();
 	});
 	
 	suite.test("open+server close",function(test){
