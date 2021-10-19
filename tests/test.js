@@ -77,6 +77,38 @@ tap.test("Server",async function(suite){
 			}
 		})();
 	});
+
+
+	suite.test("connect reject",function(test){
+		test.plan(3);
+		//Init dir
+		WebSocketServerDirectory.clear();
+		//Create server
+		const server = new WebSocketServer ({
+			host: "test3b.com"
+		});
+
+		server.on ("request", (request) => {
+			//Get protocol
+			const protocol = request.requestedProtocols[0];
+
+			//Accept the connection
+			const connection = request.reject (400, "rejected");
+		});
+
+		//Do async
+		(async()=>{
+			try {
+				//Websocket
+				const ws = await server.connect("/test");
+				test.fail();
+			} catch (e) {
+				test.ok(e);
+				test.same(e.code,400);
+				test.same(e.reason,"rejected");
+			}
+		})();
+	});
 	
 	suite.test("open+server close",function(test){
 		//Init dir
