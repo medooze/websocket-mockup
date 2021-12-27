@@ -36,7 +36,7 @@ tap.test("Server",async function(suite){
 			ws.close(1,"closed");
 		};
 		ws.onclosed	= (event) => test.fail();
-		ws.onerror	= (event) => test.fail();
+		ws.onerror	= (event) => console.error(event) && test.fail();
 		ws.onmessage	= (event) => test.fail();
 	});
 	
@@ -174,6 +174,23 @@ tap.test("Server",async function(suite){
 		ws.onclosed	= (event) => test.fail();
 		ws.onerror	= (event) => test.fail();
 		ws.onmessage	= (event) => test.fail();
+	});
+
+	suite.test("remoteAddress",function(test){
+
+		const remoteAddress ="1.1.1.1";
+		//Init dir
+		WebSocketServerDirectory.clear();
+		//Create server
+		const server = new WebSocketServer();
+
+		server.on ("request", (request) => {
+			test.same(request.remoteAddress, remoteAddress)
+			test.end()
+		});
+
+		//Websocket
+		const ws = new WebSocket("/relative","",{remoteAddress});
 	});
 	
 	suite.test("not found",function(test){
