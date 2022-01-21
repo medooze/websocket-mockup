@@ -18,7 +18,7 @@
   "homepage": "https://github.com/medooze/websocket-mockup#readme",
   "dependencies": {
     "node-mocks-http": "^1.7.3",
-    "tap": "^12.1.0",
+    "tap": "^15.1.6",
     "yaeti": "^1.0.2"
   }
 }
